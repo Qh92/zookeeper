@@ -18,7 +18,8 @@ import java.util.Objects;
  */
 public class DistributeServer {
 
-    private final String connectString = "192.168.116.128:2181,192.168.116.129:2181,192.168.116.130:2181";
+    //private final String connectString = "192.168.116.128:2181,192.168.116.129:2181,192.168.116.130:2181";
+    private final String connectString = "192.168.30.129:2181,192.168.30.130:2181,192.168.30.131:2181";
     private final int sessionTimeout = 400000;
     private ZooKeeper zk;
 
@@ -38,7 +39,8 @@ public class DistributeServer {
     }
 
     private void business() throws InterruptedException {
-        Thread.sleep(Long.MAX_VALUE);
+        while (true){
+        }
     }
 
     /**
@@ -49,7 +51,7 @@ public class DistributeServer {
      * @throws InterruptedException
      */
     private void regist(String host) throws KeeperException, InterruptedException {
-        String create = zk.create("/servers", host.getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
+        String create = zk.create("/servers/hadoop" + host, host.getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
         System.out.println(host + " is online");
     }
 

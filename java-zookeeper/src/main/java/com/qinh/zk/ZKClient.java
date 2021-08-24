@@ -18,7 +18,8 @@ import java.util.List;
 public class ZKClient {
 
     /** 注意：逗号左右不能有空格 */
-    private final String connectString = "192.168.116.128:2181,192.168.116.129:2181,192.168.116.130:2181";
+    //private final String connectString = "192.168.116.128:2181,192.168.116.129:2181,192.168.116.130:2181";
+    private final String connectString = "192.168.30.129:2181,192.168.30.130:2181,192.168.30.131:2181";
     private final int sessionTimeout = 400000;
 
     private ZooKeeper zkClient;
@@ -61,7 +62,7 @@ public class ZKClient {
      */
     @Test
     public void getChildren() throws KeeperException, InterruptedException {
-        // watch=true表示调用构造器里面的监听事件
+        // watch=true表示调用构造器里面的监听事件即 上面 new ZooKeeper(connectString, sessionTimeout, watchedEvent -> {})中的监听事件
         List<String> children = zkClient.getChildren("/", true);
         //children.forEach(System.out::println);
         //延时,让其一直处于监听状态
