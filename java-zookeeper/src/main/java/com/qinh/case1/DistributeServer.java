@@ -11,6 +11,7 @@ import java.util.Objects;
 
 /**
  * Zookeeper服务端
+ * Zookeeper节点的动态上下线
  *
  * @author Qh
  * @version 1.0
