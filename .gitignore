@@ -7,6 +7,7 @@ target/
 *.class
 */**/*.class
 production/
+source/
 
 
 ### STS ###
