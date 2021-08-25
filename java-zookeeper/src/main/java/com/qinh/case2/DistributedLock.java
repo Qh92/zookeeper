@@ -19,7 +19,7 @@ import java.util.concurrent.CountDownLatch;
 public class DistributedLock {
 
     //private final String connectString = "192.168.116.128:2181,192.168.116.129:2181,192.168.116.130:2181";
-    private final String connectString = "192.168.116.129:2181,192.168.116.130:2181";
+    private final String connectString = "192.168.30.129:2181,192.168.30.130:2181,192.168.30.131:2181";
     private final int sessionTimeout = 400000;
     private ZooKeeper zk;
 
