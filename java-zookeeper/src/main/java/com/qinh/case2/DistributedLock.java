@@ -11,6 +11,10 @@ import java.util.concurrent.CountDownLatch;
 
 /**
  * 分布式锁
+ * 比如说"进程 1"在使用该资源的时候，会先去获得锁，"进程 1"获得锁以后会对该资源
+ * 保持独占，这样其他进程就无法访问该资源，"进程 1"用完该资源以后就将锁释放掉，让其
+ * 他进程来获得锁，那么通过这个锁机制，我们就能保证了分布式系统中多个进程能够有序的
+ * 访问该临界资源。那么我们把这个分布式环境下的这个锁叫作分布式锁
  *
  * @author Qh
  * @version 1.0
@@ -23,10 +27,14 @@ public class DistributedLock {
     private final int sessionTimeout = 400000;
     private ZooKeeper zk;
 
+    /** Zookeeper连接 */
     private CountDownLatch connectLatch = new CountDownLatch(1);
+    /** Zookeeper结点等待 */
     private CountDownLatch waitLatch = new CountDownLatch(1);
 
+    /** 当前client等待的子节点，eg.当前结点 002 前一个结点001 002结点等待001结点释放锁 */
     private String waitPath;
+    /** 当前client创建的子节点 */
     private String currentNode;
 
     public DistributedLock() throws IOException, InterruptedException, KeeperException {

@@ -13,6 +13,8 @@ import java.util.Objects;
  * Zookeeper服务端
  * Zookeeper节点的动态上下线
  *
+ * 配置参数：192.168.30.129 192.168.30.130 192.168.30.131
+ *
  * @author Qh
  * @version 1.0
  * @date 2021-08-24-0:01
@@ -28,7 +30,7 @@ public class DistributeServer {
         //1.获取zk连接
         DistributeServer server = new DistributeServer();
         server.getConnect();
-        //2.注册服务器到zk集群
+        //2.注册服务端到zk集群
         if (Objects.isNull(args)){
             throw new RuntimeException("参数传入异常！");
         }

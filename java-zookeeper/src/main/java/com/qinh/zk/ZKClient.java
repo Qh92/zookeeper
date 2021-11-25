@@ -29,11 +29,11 @@ public class ZKClient {
     public void init() throws IOException {
         //连接Zookeeper服务端
         zkClient = new ZooKeeper(connectString, sessionTimeout, watchedEvent -> {
-            //监听事件
+            //监听事件,收到事件通知后的回调函数（用户的业务逻辑）
             System.out.println("-------------------");
             List<String> children = null;
             try {
-                //监听根节点的变化
+                //监听根节点的变化,再次启动监听
                 children = zkClient.getChildren("/", true);
                 children.forEach(System.out::println);
                 System.out.println("-----------------------");
@@ -51,7 +51,8 @@ public class ZKClient {
      */
     @Test
     public void create() throws KeeperException, InterruptedException {
-        String nodeCreated = zkClient.create("/qinhao2", "allen2".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+        //参数 1：要创建的节点的路径； 参数 2：节点数据 ； 参数 3：节点权限 ；参数 4：节点的类型
+        String nodeCreated = zkClient.create("/qinhao", "allen".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
     }
 
     /**

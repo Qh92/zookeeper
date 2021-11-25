@@ -29,6 +29,7 @@ public class CuratorLockTest {
             try {
                 lock1.acquire();
                 System.out.println("线程1获取到锁");
+                //可重入锁
                 lock1.acquire();
                 System.out.println("线程1再次获取到锁");
                 TimeUnit.SECONDS.sleep(5);
